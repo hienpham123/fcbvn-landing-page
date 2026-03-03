@@ -1,0 +1,47 @@
+.dich-vu-intro {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 2rem;
+  color: #555;
+  line-height: 1.7;
+}
+
+.dich-vu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.dich-vu-item {
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  border-left: 4px solid #c41e3a;
+}
+
+.dich-vu-item h2 {
+  font-size: 1.25rem;
+  color: #c41e3a;
+  margin: 0 0 0.5rem 0;
+}
+
+.dich-vu-item p {
+  margin: 0 0 1rem 0;
+  color: #555;
+  line-height: 1.6;
+}
+
+.dich-vu-item .btn {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  background: #c41e3a;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.dich-vu-item .btn:hover {
+  background: #a01830;
+}

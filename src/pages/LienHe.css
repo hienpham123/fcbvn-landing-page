@@ -1,0 +1,114 @@
+.lien-he-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.lien-he-info h2,
+.lien-he-form-wrap h2 {
+  font-size: 1.25rem;
+  color: #222;
+  margin: 0 0 1rem 0;
+}
+
+.lien-he-info h3 {
+  font-size: 1rem;
+  color: #c41e3a;
+  margin: 0 0 0.75rem 0;
+}
+
+.lien-he-info p {
+  margin: 0 0 0.5rem 0;
+  color: #555;
+}
+
+.lien-he-info a {
+  color: #c41e3a;
+  text-decoration: none;
+}
+
+.lien-he-info a:hover {
+  text-decoration: underline;
+}
+
+.lien-he-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.btn-contact {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #c41e3a;
+  color: #fff !important;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+.btn-contact:hover {
+  background: #a01830;
+  text-decoration: none !important;
+}
+
+.lien-he-form label {
+  display: block;
+  margin: 0.75rem 0 0.25rem 0;
+  font-weight: 500;
+  color: #333;
+}
+
+.lien-he-form input,
+.lien-he-form textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.lien-he-form textarea {
+  resize: vertical;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn-submit {
+  padding: 0.6rem 1.25rem;
+  background: #c41e3a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background: #a01830;
+}
+
+.form-actions button[type="button"] {
+  padding: 0.6rem 1.25rem;
+  background: #eee;
+  color: #333;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.form-actions button[type="button"]:hover {
+  background: #ddd;
+}
+
+@media (max-width: 768px) {
+  .lien-he-grid {
+    grid-template-columns: 1fr;
+  }
+}

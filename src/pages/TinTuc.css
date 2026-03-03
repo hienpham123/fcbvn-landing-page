@@ -1,0 +1,42 @@
+.tin-tuc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tin-tuc-item {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #eee;
+}
+
+.tin-tuc-item:last-child {
+  border-bottom: none;
+}
+
+.tin-tuc-date {
+  font-size: 0.875rem;
+  color: #999;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.tin-tuc-item h2 {
+  font-size: 1.2rem;
+  color: #222;
+  margin: 0 0 0.75rem 0;
+  line-height: 1.4;
+}
+
+.tin-tuc-item p {
+  color: #555;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.6;
+}
+
+.tin-tuc-read {
+  font-size: 0.9rem;
+  color: #c41e3a;
+  font-weight: 500;
+}
