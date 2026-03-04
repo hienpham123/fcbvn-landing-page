@@ -68,21 +68,85 @@
   font-weight: 600;
   text-decoration: none;
   transition: opacity 0.2s, transform 0.2s;
+  cursor: pointer;
+  border: none;
+  font: inherit;
 }
 
-.btn:hover {
+.btn:hover,
+.btn:focus-visible {
   opacity: 0.9;
   transform: translateY(-1px);
+  text-decoration: none;
 }
 
-.btn-primary {
-  background: #fff;
-  color: #c41e3a;
-}
-
-.btn-outline {
-  border: 2px solid #fff;
+/* Nút hero hòa với màu banner (tông đỏ đậm, tối) */
+.hero-cta .btn-primary {
+  background: #8b1529;
   color: #fff;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.hero-cta .btn-primary:hover,
+.hero-cta .btn-primary:focus-visible {
+  background: #a01830;
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+}
+
+.hero-cta .btn-outline {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  color: #fff;
+}
+
+.hero-cta .btn-outline:hover,
+.hero-cta .btn-outline:focus-visible {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #fff;
+  color: #fff;
+}
+
+/* Thống kê trong banner: Dự án 20+, Nhân sự 30+ (ngay dưới 2 button) */
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.hero-stats-item {
+  padding: 0 1.5rem;
+  text-align: left;
+}
+
+.hero-stats-item:first-child {
+  padding-left: 0;
+}
+
+.hero-stats-label {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 0.25rem;
+}
+
+.hero-stats-value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.hero-stats-divider {
+  width: 1px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.45);
+  flex-shrink: 0;
 }
 
 .hero-dots {
@@ -134,6 +198,18 @@
   .hero-cta {
     justify-content: flex-start;
   }
+
+  .hero-stats {
+    margin-top: 1.5rem;
+  }
+
+  .hero-stats-value {
+    font-size: 1.6rem;
+  }
+
+  .hero-stats-divider {
+    height: 36px;
+  }
 }
 
 .section-desc {
@@ -144,17 +220,29 @@
   line-height: 1.7;
 }
 
+/* 3 phần trên, 2 phần dưới – 5 card cùng kích thước, container nhỏ hơn */
+.section-services .container {
+  max-width: 960px;
+}
+
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.25rem;
 }
+
+/* Mỗi card cùng độ rộng (span 2 cột) */
+.service-card:nth-child(1) { grid-column: 1 / 3; }
+.service-card:nth-child(2) { grid-column: 3 / 5; }
+.service-card:nth-child(3) { grid-column: 5 / 7; }
+.service-card:nth-child(4) { grid-column: 2 / 4; }  /* hàng dưới căn giữa */
+.service-card:nth-child(5) { grid-column: 4 / 6; }
 
 .service-card {
   background: #fff;
   border: 1px solid #e8e8e8;
   border-radius: 8px;
-  overflow: visible;
+  overflow: hidden;
   text-decoration: none;
   color: #333;
   transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
@@ -162,6 +250,13 @@
   flex-direction: column;
   position: relative;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  contain: layout;
+}
+
+.service-card:hover,
+.service-card:focus-visible {
+  text-decoration: none;
 }
 
 .service-card:hover {
@@ -201,12 +296,15 @@
   opacity: 1;
 }
 
+/* Tỉ lệ ảnh đồng nhất, height cố định để hover không làm section đổi height */
 .service-card-image {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 4 / 3;
+  min-height: 0;
   overflow: hidden;
   background: #f0f0f0;
   position: relative;
+  flex-shrink: 0;
 }
 
 .service-card-image img {
@@ -215,6 +313,7 @@
   object-fit: cover;
   display: block;
   transition: transform 0.3s ease;
+  transform-origin: center center;
 }
 
 .service-card:hover .service-card-image img {
@@ -284,7 +383,8 @@
 }
 
 .service-card:hover .service-link,
-.service-card .service-link:hover {
+.service-card .service-link:hover,
+.service-card:hover .service-link {
   text-decoration: none;
 }
 
@@ -316,13 +416,22 @@
   margin: 0;
 }
 
-.link-more {
+.link-more,
+.link-more-btn {
   color: #c41e3a;
   font-weight: 500;
   text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
 }
 
-.link-more:hover {
+.link-more:hover,
+.link-more-btn:hover,
+.link-more:focus-visible,
+.link-more-btn:focus-visible {
   text-decoration: none !important;
 }
 
@@ -340,7 +449,7 @@
   inset: 0;
   background-color: #0f2744;
   background-size: cover;
-  background-position: center;
+  background-position: inherit;
   background-repeat: no-repeat;
   pointer-events: none;
 }
@@ -378,10 +487,13 @@
   border-radius: 6px;
   white-space: nowrap;
   transition: background 0.2s, color 0.2s, border-color 0.2s;
+  cursor: pointer;
+  font: inherit;
 }
 
-.btn-projects-all:hover {
-  background: #d93b2f;
+.btn-projects-all:hover,
+.btn-projects-all:focus-visible {
+  background: #c41e3a;
   color: #fff;
   border-color: #fff;
   text-decoration: none;
@@ -491,16 +603,42 @@
 }
 
 @media (max-width: 992px) {
+  .section-services .container {
+    max-width: 100%;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .service-card:nth-child(1),
+  .service-card:nth-child(2),
+  .service-card:nth-child(3),
+  .service-card:nth-child(4),
+  .service-card:nth-child(5) {
+    grid-column: 1 / -1;
+  }
+
   .projects-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 576px) {
+/* Mobile: 1 cột, thêm padding */
+@media (max-width: 768px) {
   .projects-grid {
     grid-template-columns: 1fr;
   }
 
+  .section-news .container,
+  .section-services .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+@media (max-width: 576px) {
   .section-projects-header {
     flex-direction: column;
     gap: 1rem;
@@ -509,36 +647,79 @@
 
 .news-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: 1.5rem;
+}
+
+@media (min-width: 769px) {
+  .news-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 .news-card {
   background: #fff;
   border: 1px solid #eee;
   border-radius: 8px;
-  padding: 1.5rem;
+  overflow: hidden;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.news-date {
-  font-size: 0.8rem;
-  color: #999;
+.news-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  border-color: #e0e0e0;
+}
+
+.news-card-image-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+.news-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  margin-bottom: 0.5rem;
+}
+
+.news-date-badge {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: #c41e3a;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
 }
 
 .news-card h3 {
-  font-size: 1rem;
+  font-size: 0.95rem;
   margin: 0 0 0.5rem 0;
   color: #222;
   line-height: 1.4;
+  padding: 1rem 1rem 0;
 }
 
 .news-card p {
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   color: #666;
   margin: 0 0 0.75rem 0;
   line-height: 1.5;
+  padding: 0 1rem;
+  flex: 1;
+}
+
+.news-card .news-link {
+  margin: 0 1rem 1rem;
+  align-self: flex-start;
 }
 
 .news-link {
@@ -546,13 +727,51 @@
   color: #c41e3a;
   font-weight: 500;
   text-decoration: none;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font: inherit;
 }
 
-.news-link:hover {
+.news-link:hover,
+.news-link:focus-visible {
   text-decoration: none !important;
+}
+
+.news-cta-wrap {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.btn-news-all {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: #fff;
+  color: #c41e3a;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  border: 2px solid #c41e3a;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn-news-all:hover,
+.btn-news-all:focus-visible {
+  background: #c41e3a;
+  color: #fff;
+  text-decoration: none;
 }
 
 .section-projects .section-title,
 .section-news .section-title {
   margin-bottom: 0.25rem;
+}
+
+.section-news .section-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
 }

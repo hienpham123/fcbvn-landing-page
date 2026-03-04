@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { getServiceBySlug } from '../data/services'
+import PageHeader from '../components/PageHeader'
 import './Page.css'
 
 export default function ServiceDetail() {
@@ -17,11 +18,10 @@ export default function ServiceDetail() {
 
   return (
     <>
-      <div className="page-header">
-        <div className="container">
-          <h1>{service.title}</h1>
-        </div>
-      </div>
+      <PageHeader
+        title={service.title}
+        breadcrumbs={[{ label: 'Trang chủ', to: '/' }, { label: 'Dịch vụ', to: '/dich-vu' }, { label: service.title }]}
+      />
       <div className="container section">
         <div className="page-content">
           <p>{service.content}</p>

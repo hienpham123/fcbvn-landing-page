@@ -18,6 +18,17 @@
   padding: 3rem 0;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+
+  .section {
+    padding: 2.25rem 0;
+  }
+}
+
 .section-title {
   text-align: center;
   font-size: 1.75rem;
@@ -25,7 +36,8 @@
   margin-bottom: 2rem;
 }
 
-.section-title::after {
+/* Section Dự án đã thực hiện giữ line đỏ như cũ */
+.section-title-old-line::after {
   content: '';
   display: block;
   width: 60px;
@@ -34,15 +46,38 @@
   margin: 0.5rem auto 0;
 }
 
-.page-header {
-  background: linear-gradient(135deg, #c41e3a 0%, #8b1529 100%);
-  color: #fff;
-  padding: 2.5rem 0;
-  margin-bottom: 2rem;
+/* Nút gọi cố định góc phải giữa: vòng đỏ đặc, icon trắng, viền đỏ + glow, có hiệu ứng rung */
+.float-call {
+  position: fixed;
+  right: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 999;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  text-decoration: none;
+  animation: float-call-shake 1s ease-in-out infinite;
 }
 
-.page-header h1 {
-  margin: 0;
-  font-size: 1.75rem;
-  text-align: center;
+.float-call:hover {
+  animation: float-call-shake 1s ease-in-out infinite;
+}
+
+.float-call img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+}
+
+/* Hiệu ứng lật đật: nghiêng trái-phải rồi trở lại */
+@keyframes float-call-shake {
+  0%, 100% { transform: translateY(-50%) rotate(0deg); }
+  25% { transform: translateY(-50%) rotate(-15deg); }
+  50% { transform: translateY(-50%) rotate(12deg); }
+  75% { transform: translateY(-50%) rotate(-8deg); }
 }

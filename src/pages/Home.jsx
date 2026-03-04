@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import SectionTitle from '../components/SectionTitle'
 import { services } from '../data/services'
 import { projects } from '../data/projects'
 import { news } from '../data/news'
@@ -15,14 +16,26 @@ import projectImg1 from '../assets/images/khu-thuong-mai-tang-1-2-3-toa-nha-duc-
 import projectImg2 from '../assets/images/chu-dau-tu-cong-ty-tnhh-gas-petrolimex-ha-noi.jpg'
 import projectImg3 from '../assets/images/bao-duong-toa-nha-o-dich-vu-cong-cong-va-can-ho-de-ban-hongkong-tower-2.jpg'
 import bgDa from '../assets/images/bg-da.jpg'
+import newsImg1 from '../assets/images/cac-bien-phap-dam-bao-an-toan-pccc-trong-ho-gia-dinh.png'
+import newsImg2 from '../assets/images/de-chu-dong-phong-ngua-ngan-chan-nguy-co-chay-no-trong-mua-nang-nong-sap-toi-ban-hay-cung-fcbvn-fire-tim-hieu-cac-ki-nang-co-ban-nhe.jpg'
+import newsImg3 from '../assets/images/cach-so-cuu-nhanh-nhat-khi-ban-bi-bong-lua-.jpg'
 import './Home.css'
 
 const serviceImages = [serviceImg1, serviceImg2, serviceImg3, serviceImg4, serviceImg5]
+const newsImages = [newsImg1, newsImg2, newsImg3]
 const projectImages = [projectImg1, projectImg2, projectImg3]
 
+const DURATION = 1200
+const TARGET_PROJECTS = 20
+const TARGET_STAFF = 30
+
 export default function Home() {
+  const navigate = useNavigate()
   const banners = [banner1, banner2, banner3]
   const [current, setCurrent] = useState(0)
+  const [countProjects, setCountProjects] = useState(0)
+  const [countStaff, setCountStaff] = useState(0)
+  const [statsStarted, setStatsStarted] = useState(false)
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -30,6 +43,25 @@ export default function Home() {
     }, 5000)
     return () => clearInterval(id)
   }, [banners.length])
+
+  useEffect(() => {
+    const t = setTimeout(() => setStatsStarted(true), 400)
+    return () => clearTimeout(t)
+  }, [])
+
+  useEffect(() => {
+    if (!statsStarted) return
+    const start = performance.now()
+    const step = (now) => {
+      const elapsed = now - start
+      const t = Math.min(elapsed / DURATION, 1)
+      const ease = 1 - (1 - t) * (1 - t)
+      setCountProjects(Math.max(1, Math.round(ease * TARGET_PROJECTS)))
+      setCountStaff(Math.max(1, Math.round(ease * TARGET_STAFF)))
+      if (t < 1) requestAnimationFrame(step)
+    }
+    requestAnimationFrame(step)
+  }, [statsStarted])
 
   const goTo = (index) => {
     setCurrent(index)
@@ -52,8 +84,19 @@ export default function Home() {
                     Chuyên tư vấn, thiết kế, thi công, bảo trì hệ thống PCCC chuyên nghiệp
                   </p>
                   <div className="hero-cta">
-                    <Link to="/lien-he" className="btn btn-primary">Liên hệ ngay</Link>
-                    <Link to="/dich-vu" className="btn btn-outline">Xem dịch vụ</Link>
+                    <button type="button" className="btn btn-primary" onClick={() => navigate('/lien-he')}>Liên hệ ngay</button>
+                    <button type="button" className="btn btn-outline" onClick={() => navigate('/dich-vu')}>Xem dịch vụ</button>
+                  </div>
+                  <div className="hero-stats">
+                    <div className="hero-stats-item">
+                      <span className="hero-stats-label">Dự án</span>
+                      <span className="hero-stats-value">{countProjects}+</span>
+                    </div>
+                    <div className="hero-stats-divider" aria-hidden />
+                    <div className="hero-stats-item">
+                      <span className="hero-stats-label">Nhân sự</span>
+                      <span className="hero-stats-value">{countStaff}+</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -75,13 +118,20 @@ export default function Home() {
 
       <section className="section section-services">
         <div className="container">
-          <h2 className="section-title">Dịch Vụ Chúng Tôi Cung Cấp</h2>
+          <SectionTitle>Dịch Vụ Chúng Tôi Cung Cấp</SectionTitle>
           <p className="section-desc">
             FCBVN Fire chuyên về tư vấn, thiết kế, thi công, bảo trì các hệ thống PCCC. Các công trình do FCBVN Fire thực hiện đảm bảo về tính kỹ thuật, thẩm mỹ và được bảo hành dài hạn, mang lại sự yên tâm và tin cậy trong suốt quá trình sử dụng.
           </p>
           <div className="services-grid">
             {services.map((s, index) => (
-              <Link to={`/dich-vu/${s.slug}`} key={s.slug} className="service-card">
+              <div
+                key={s.slug}
+                role="button"
+                tabIndex={0}
+                className="service-card"
+                onClick={() => navigate(`/dich-vu/${s.slug}`)}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate(`/dich-vu/${s.slug}`) } }}
+              >
                 <div className="service-card-image">
                   <img src={serviceImages[index]} alt={s.title} />
                   <div className="service-card-overlay">{s.title}</div>
@@ -89,7 +139,7 @@ export default function Home() {
                 <h3>{s.title}</h3>
                 <p>{s.shortDesc}</p>
                 <span className="service-link">Xem chi tiết →</span>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -103,22 +153,26 @@ export default function Home() {
               <h2 className="section-title">Dự án đã thực hiện</h2>
               <p className="section-subtitle">Các dự án chúng tôi đã thực hiện</p>
             </div>
-            <Link to="/du-an" className="btn-projects-all">Xem tất cả</Link>
+            <button type="button" className="btn-projects-all" onClick={() => navigate('/du-an')}>XEM TẤT CẢ</button>
           </div>
           <div className="projects-grid">
-            {projects.map((p, index) => (
-              <Link to="/du-an" key={p.id} className="project-card">
+            {projects.slice(0, 3).map((p, index) => (
+              <div
+                key={p.id}
+                role="button"
+                tabIndex={0}
+                className="project-card"
+                onClick={() => navigate('/du-an')}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); navigate('/du-an') } }}
+              >
                 <div className="project-card-image">
                   <img src={projectImages[index]} alt={p.title} />
                   <div className="project-card-overlay">
-                    {/* <span className="project-card-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-                    </span> */}
                     <span className="project-card-overlay-title">{p.title}</span>
                   </div>
                 </div>
                 {p.client && <p className="project-client">{p.client}</p>}
-              </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -126,19 +180,22 @@ export default function Home() {
 
       <section className="section section-news">
         <div className="container">
-          <div className="section-header">
-            <h2 className="section-title">Tin tức</h2>
-            <Link to="/tin-tuc" className="link-more">Xem tất cả</Link>
-          </div>
+          <SectionTitle>Tin tức</SectionTitle>
           <div className="news-grid">
-            {news.map((n) => (
+            {news.map((n, index) => (
               <article key={n.id} className="news-card">
-                <span className="news-date">{n.date}</span>
+                <div className="news-card-image-wrap">
+                  <img src={newsImages[index]} alt={n.title} className="news-card-image" />
+                  <span className="news-date news-date-badge">{n.date}</span>
+                </div>
                 <h3>{n.title}</h3>
                 <p>{n.excerpt}</p>
-                <Link to="/tin-tuc" className="news-link">Đọc tiếp +</Link>
+                <button type="button" className="news-link" onClick={() => navigate('/tin-tuc')}>Đọc tiếp +</button>
               </article>
             ))}
+          </div>
+          <div className="news-cta-wrap">
+            <button type="button" className="btn-news-all" onClick={() => navigate('/tin-tuc')}>Xem tất cả</button>
           </div>
         </div>
       </section>

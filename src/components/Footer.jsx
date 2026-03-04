@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa'
 import logo from '../assets/images/logo.svg'
 import './Footer.css'
 
@@ -13,15 +14,20 @@ export default function Footer() {
                 <img src={logo} alt="FCBVN" />
               </Link>
               <h3 className="footer-title">Công ty Cổ phần FCBVN</h3>
-              <p className="footer-address">
-                Số 9, ngõ 127 Đường Võ Chí Công, Phường Xuân Đỉnh, Thành Phố Hà Nội
-              </p>
-              <p>
-                <a href="tel:0912084114">0912 084 114</a>
-              </p>
-              <p>
-                <a href="mailto:contact@fcbvn.vn">contact@fcbvn.vn</a>
-              </p>
+              <div className="footer-contact-list">
+                <div className="footer-contact-row">
+                  <FaMapMarkerAlt className="footer-contact-icon" aria-hidden />
+                  <span className="footer-contact-text">Số 9, ngõ 127 Đường Võ Chí Công, Phường Xuân Đỉnh, Thành Phố Hà Nội</span>
+                </div>
+                <div className="footer-contact-row">
+                  <FaPhone className="footer-contact-icon" aria-hidden />
+                  <a href="tel:0912084114" className="footer-contact-text">0912 084 114</a>
+                </div>
+                <div className="footer-contact-row">
+                  <FaEnvelope className="footer-contact-icon" aria-hidden />
+                  <a href="mailto:contact@fcbvn.vn" className="footer-contact-text">contact@fcbvn.vn</a>
+                </div>
+              </div>
             </div>
             <div className="footer-col">
               <h4>Giới thiệu</h4>
@@ -53,7 +59,7 @@ export default function Footer() {
       </div>
       <div className="footer-bottom">
         <div className="container">
-          <p>© Copyright 2021. fcbvn.vn. Designed by Viễn Nam</p>
+          <p>© Copyright 2026. fcbvn.vn. Designed by Thế Hiển</p>
         </div>
       </div>
     </footer>

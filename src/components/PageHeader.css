@@ -1,0 +1,72 @@
+.page-header {
+  background: linear-gradient(180deg, #c41e3a 0%, #a01830 100%);
+  color: #fff;
+  padding: 0.9rem 0;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 6px rgba(196, 30, 58, 0.18);
+}
+
+.page-header-inner {
+  text-align: center;
+}
+
+.page-header-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem 0.4rem;
+  font-size: 0.8rem;
+  opacity: 0.92;
+  margin-bottom: 0.2rem;
+}
+
+.page-header-breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.page-header-breadcrumb-link {
+  color: rgba(255, 255, 255, 0.9);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.page-header-breadcrumb-link:hover {
+  color: #fff;
+  text-decoration: none;
+}
+
+.page-header-breadcrumb-sep {
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 300;
+  user-select: none;
+}
+
+.page-header-breadcrumb-current {
+  color: #fff;
+  font-weight: 500;
+}
+
+.page-header-title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+}
+
+@media (max-width: 640px) {
+  .page-header {
+    padding: 0.75rem 0;
+  }
+
+  .page-header-title {
+    font-size: 1.15rem;
+  }
+
+  .page-header-breadcrumb {
+    font-size: 0.75rem;
+  }
+}

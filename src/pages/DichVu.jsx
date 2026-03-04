@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom'
 import { services } from '../data/services'
+import PageHeader from '../components/PageHeader'
 import './DichVu.css'
 
 export default function DichVu() {
   return (
     <>
-      <div className="page-header">
-        <div className="container">
-          <h1>Dịch vụ</h1>
-        </div>
-      </div>
+      <PageHeader
+        title="Dịch vụ"
+        breadcrumbs={[{ label: 'Trang chủ', to: '/' }, { label: 'Dịch vụ' }]}
+      />
       <div className="container section">
         <p className="dich-vu-intro">
           FCBVN Fire chuyên về tư vấn, thiết kế, thi công, bảo trì các hệ thống PCCC. Các công trình do FCBVN Fire thực hiện đảm bảo về tính kỹ thuật, thẩm mỹ và được bảo hành dài hạn.

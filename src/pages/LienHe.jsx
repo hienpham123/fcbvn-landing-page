@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { FaMapMarkerAlt, FaPhone, FaEnvelope } from 'react-icons/fa'
+import PageHeader from '../components/PageHeader'
 import './LienHe.css'
 
 export default function LienHe() {
@@ -24,19 +26,29 @@ export default function LienHe() {
 
   return (
     <>
-      <div className="page-header">
-        <div className="container">
-          <h1>Liên hệ</h1>
-        </div>
-      </div>
+      <PageHeader
+        title="Liên hệ"
+        breadcrumbs={[{ label: 'Trang chủ', to: '/' }, { label: 'Liên hệ' }]}
+      />
       <div className="container section">
         <div className="lien-he-grid">
           <div className="lien-he-info">
             <h2>Thông tin liên hệ</h2>
             <h3>Công ty Cổ phần FCBVN</h3>
-            <p>Địa chỉ: Số 9, ngõ 127 Đường Võ Chí Công, Phường Xuân Đỉnh, Thành Phố Hà Nội</p>
-            <p>Điện thoại: <a href="tel:0912084114">0912 084 114</a></p>
-            <p>Email: <a href="mailto:contact@fcbvn.vn">contact@fcbvn.vn</a></p>
+            <div className="lien-he-contact-list">
+              <div className="lien-he-contact-row">
+                <FaMapMarkerAlt className="lien-he-contact-icon" aria-hidden />
+                <span className="lien-he-contact-text">Số 9, ngõ 127 Đường Võ Chí Công, Phường Xuân Đỉnh, Thành Phố Hà Nội</span>
+              </div>
+              <div className="lien-he-contact-row">
+                <FaPhone className="lien-he-contact-icon" aria-hidden />
+                <a href="tel:0912084114" className="lien-he-contact-text">0912 084 114</a>
+              </div>
+              <div className="lien-he-contact-row">
+                <FaEnvelope className="lien-he-contact-icon" aria-hidden />
+                <a href="mailto:contact@fcbvn.vn" className="lien-he-contact-text">contact@fcbvn.vn</a>
+              </div>
+            </div>
             <div className="lien-he-actions">
               <a href="tel:0912084114" className="btn-contact">Gọi cho chúng tôi</a>
               <a href="mailto:contact@fcbvn.vn" className="btn-contact">Mail</a>

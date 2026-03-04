@@ -9,6 +9,7 @@ import LienHe from './pages/LienHe'
 import TinTuc from './pages/TinTuc'
 import DuAn from './pages/DuAn'
 import NhanSu from './pages/NhanSu'
+import callIcon from './assets/images/call.png'
 import './App.css'
 
 export default function App() {
@@ -28,6 +29,9 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <a href="tel:0912084114" className="float-call" aria-label="Gọi hotline">
+        <img src={callIcon} alt="" />
+      </a>
     </div>
   )
 }

@@ -6,6 +6,17 @@
   margin: 0 auto;
 }
 
+@media (max-width: 768px) {
+  .tin-tuc-list {
+    gap: 1.75rem;
+    padding: 0 0.5rem;
+  }
+
+  .tin-tuc-item {
+    padding-bottom: 1.5rem;
+  }
+}
+
 .tin-tuc-item {
   padding-bottom: 2rem;
   border-bottom: 1px solid #eee;
@@ -15,11 +26,34 @@
   border-bottom: none;
 }
 
-.tin-tuc-date {
-  font-size: 0.875rem;
-  color: #999;
+.tin-tuc-item-image-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #f0f0f0;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.tin-tuc-item-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
-  margin-bottom: 0.5rem;
+}
+
+.tin-tuc-date-badge {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: #c41e3a;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
 }
 
 .tin-tuc-item h2 {
